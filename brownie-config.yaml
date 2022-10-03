@@ -17,7 +17,8 @@ networks:
     link_token: '0x01BE23585060835E02B77ef475b0Cc51aA1e0709'
     keyhash: '0x79d3d8832d904592c0bf9818b621522c988bb8b0c05cdc3b15aea1b6e8db0c15'
     fee: 25000000000000000
+    verify: True
   mainnet-fork:
     eth_usd_price_feed: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419'
   wallets:
-    from_key:${PRIVATE_KEY}
+    from_key:${PRIVATE_KEY} 
