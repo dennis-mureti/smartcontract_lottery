@@ -15,5 +15,11 @@ def deploy_lottery():
     )
     print("Deployed lottery!!")
 
+def start_lottery():
+    account = get_account()
+    lottery = lottery[-1]
+    lottery.startLottery({"from": account})
+    print("lottery started")
+
 def main():
     deploy_lottery()
