@@ -20,6 +20,7 @@ contract Lottery is VRFConsumerBase, Ownable{
     LOTTERY_STATE public lottery_state;
     uint256 public fee; // since the fee can change, we can have it as an input parameter as well in our constructor
     bytes32 public keyHash; // will e used to uniquely identify the chainlink VRF node
+    event RequestedRandomness(bytes32 requestId);
     // the above states are actually represented by numbers e.g OPEN->0 CLOSED->1 and CALCULATING_WINNER->2
     // 0
     // 1
@@ -70,6 +71,7 @@ contract Lottery is VRFConsumerBase, Ownable{
         // uint256(keccak256(abi.encodePacked(nonce, msg.sender, block.difficulty, block.timestamp))) % players.length
         lottery_state = LOTTERY_STATE.CALCULATING_WINNER; // to change the state of our lottery and whilethis is happenig no one can do anything else
         bytes32 requestId = requestRandomness(keyHash, fee); // request and receive architechture, to request data from chainlink oracle and return to fullfilRandomnes
+        emit RequestedRandomness(requestId);
     }
 
     // is internal bcoz only the VRFCordinator can call and return this function and we ovveride the original declaration of the function
